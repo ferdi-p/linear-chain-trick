@@ -25,7 +25,7 @@ with ui.element('div').classes('flex flex-col md:flex-row gap-6 p-6 w-full max-w
         mean_label = ui.label().classes('mt-1')
         var_label  = ui.label().classes('mt-1')
 
-    chart = make_echart_card('Distribution of delay', height='70vh')
+    chart = make_echart_card('Distribution of delay')
 
 def update_chart(_=None):
     mu_val = float(mu.value)

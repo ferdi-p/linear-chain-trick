@@ -39,34 +39,19 @@ def header_with_info(title: str, on_info_click):
             ui.button(icon='info', on_click=on_info_click).props('round unelevated size=md color=primary')
 
 
-def make_echart_card(title: str, height: str = '60vh', max_width: str = '1100px'):
-    # Card stays flexible, but the inner wrapper limits chart width everywhere
-    with ui.card().classes('flex-1 w-full shadow-md p-4'):
-        ui.label(title).classes('text-lg font-medium mb-2')
-        with ui.element('div').classes(f'w-full max-w-[{max_width}] mx-auto'):
+def make_echart_card(title: str, height: str = '50vh', max_width: str = '800px'):
+    # Card expands to fill the right side of the flex row
+    with ui.card().classes('w-full md:w-[800px] shrink-0 shadow-md p-4'):
+        ui.label(title).classes('text-lg font-medium mb-2 text-center')
+        # Centered width anchor; chart will fill this
+        with ui.element('div').style(f'width:100%; max-width:{max_width}; margin:0 auto;'):
             chart = ui.echart({
-                # GLOBAL text style (affects tooltip too)
-                'textStyle': {
-                    'fontFamily': 'Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
-                    'fontSize': 14,
-                },
                 'tooltip': {'show': False},
                 'grid': {'left': 60, 'right': 30, 'top': 30, 'bottom': 40},
-                'xAxis': {
-                    'type': 'value',
-                    'name': 't',
-                    'min': 0,
-                    'nameTextStyle': {'fontSize': 14},
-                    'axisLabel': {'fontSize': 12},
-                },
-                'yAxis': {
-                    'type': 'value',
-                    'name': 'density',
-                    'nameTextStyle': {'fontSize': 14},
-                    'axisLabel': {'fontSize': 12},
-                },
+                'xAxis': {'type': 'value', 'name': 't', 'min': 0},
+                'yAxis': {'type': 'value', 'name': 'density'},
                 'series': [
                     {'type': 'line', 'showSymbol': False, 'areaStyle': {}, 'data': []},
                 ],
-            }).style(f'height:{height};width:100%')
+            }).style(f'height:{height}; width:100%')  # fill the wrapper
             return chart
