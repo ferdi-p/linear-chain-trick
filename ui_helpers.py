@@ -39,17 +39,34 @@ def header_with_info(title: str, on_info_click):
             ui.button(icon='info', on_click=on_info_click).props('round unelevated size=md color=primary')
 
 
-
-def make_echart_card(title: str, height: str = '70vh', width: str = '85%'):
+def make_echart_card(title: str, height: str = '60vh', max_width: str = '1100px'):
+    # Card stays flexible, but the inner wrapper limits chart width everywhere
     with ui.card().classes('flex-1 w-full shadow-md p-4'):
         ui.label(title).classes('text-lg font-medium mb-2')
-        chart = ui.echart({
-            'tooltip': {'show': False},
-            'grid': {'left': 60, 'right': 30, 'top': 30, 'bottom': 40},
-            'xAxis': {'type': 'value', 'name': 't', 'min': 0},
-            'yAxis': {'type': 'value', 'name': 'density'},
-            'series': [
-                {'type': 'line', 'showSymbol': False, 'areaStyle': {}, 'data': []},
-            ],
-        }).style(f'height:{height};width:{width}')
-        return chart
+        with ui.element('div').classes(f'w-full max-w-[{max_width}] mx-auto'):
+            chart = ui.echart({
+                # GLOBAL text style (affects tooltip too)
+                'textStyle': {
+                    'fontFamily': 'Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif',
+                    'fontSize': 14,
+                },
+                'tooltip': {'show': False},
+                'grid': {'left': 60, 'right': 30, 'top': 30, 'bottom': 40},
+                'xAxis': {
+                    'type': 'value',
+                    'name': 't',
+                    'min': 0,
+                    'nameTextStyle': {'fontSize': 14},
+                    'axisLabel': {'fontSize': 12},
+                },
+                'yAxis': {
+                    'type': 'value',
+                    'name': 'density',
+                    'nameTextStyle': {'fontSize': 14},
+                    'axisLabel': {'fontSize': 12},
+                },
+                'series': [
+                    {'type': 'line', 'showSymbol': False, 'areaStyle': {}, 'data': []},
+                ],
+            }).style(f'height:{height};width:100%')
+            return chart
