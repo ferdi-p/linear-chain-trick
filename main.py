@@ -31,17 +31,24 @@ def update_chart(_=None):
     mu_val = float(mu.value)
     n_val = int(n.value)
     tmax_val = 10.0
+
     mean_label.text = f'mean = {mu_val:.4g}'
-    var_label.text = f'variance = {mu_val ** 2 / n_val:.4g}'
+    var_label.text  = f'variance = {mu_val ** 2 / n_val:.4g}'
+
     t, pdf = linear_chain(mu_val, n_val, tmax=tmax_val)
     data = [[t[i], pdf[i]] for i in range(len(t))]
+
+    # Update single series (combined line + area)
     chart.options['series'][0]['data'] = data
-    chart.options['series'][1]['data'] = data
     chart.options['xAxis']['max'] = tmax_val
     chart.update()
+
 
 for w in (mu, n):
     w.on('change', update_chart)
 
 update_chart()
+ui.add_head_html('''
+<link rel="icon" type="image/x-icon" href="/static/favicon.ico?v=8">
+''')
 ui.run(host='0.0.0.0', port=8080)

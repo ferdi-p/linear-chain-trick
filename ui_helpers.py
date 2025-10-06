@@ -44,13 +44,12 @@ def make_echart_card(title: str, height: str = '70vh'):
     with ui.card().classes('flex-1 w-full shadow-md p-4'):
         ui.label(title).classes('text-lg font-medium mb-2')
         chart = ui.echart({
-            'tooltip': {'trigger': 'axis'},
+            'tooltip': {'show': False},
             'grid': {'left': 60, 'right': 30, 'top': 30, 'bottom': 40},
             'xAxis': {'type': 'value', 'name': 't', 'min': 0},
             'yAxis': {'type': 'value', 'name': 'density'},
             'series': [
-                {'type': 'line', 'showSymbol': False, 'data': []},
                 {'type': 'line', 'showSymbol': False, 'areaStyle': {}, 'data': []},
             ],
-        }).style(f'height:{height};width:100%')
+        }).style('height:65vh;width:100%')
         return chart
