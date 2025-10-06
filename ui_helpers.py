@@ -40,7 +40,7 @@ def header_with_info(title: str, on_info_click):
 
 
 
-def make_echart_card(title: str, height: str = '70vh'):
+def make_echart_card(title: str, height: str = '70vh', width: str = '85%'):
     with ui.card().classes('flex-1 w-full shadow-md p-4'):
         ui.label(title).classes('text-lg font-medium mb-2')
         chart = ui.echart({
@@ -51,5 +51,5 @@ def make_echart_card(title: str, height: str = '70vh'):
             'series': [
                 {'type': 'line', 'showSymbol': False, 'areaStyle': {}, 'data': []},
             ],
-        }).style('h-[35vh] md:h-[50vh] w-full')
+        }).style(f'height:{height};width:{width}')
         return chart
