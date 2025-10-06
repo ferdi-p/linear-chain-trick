@@ -31,10 +31,14 @@ def build_info_dialog(markdown_text: str):
         dialog.open()
     return dialog, open_dialog
 
-def header_with_info(title: str, on_info_click: Callable[[], None]):
-    with ui.header().classes('justify-between items-center bg-gray-100 px-4 py-2'):
-        ui.label(title).classes('text-base md:text-lg font-medium')
-        ui.button(icon='info', on_click=on_info_click).props('round unelevated size=md color=primary')
+def header_with_info(title: str, on_info_click):
+    # Title and icon button side by side on the left
+    with ui.header().classes('bg-gray-200 shadow-sm'):
+        with ui.row().classes('items-center gap-6 px-5 py-3'):
+            ui.label(title).classes('text-xl font-semibold text-gray-900')
+            ui.button(icon='info', on_click=on_info_click).props('round unelevated size=md color=primary')
+
+
 
 def make_echart_card(title: str, height: str = '70vh'):
     with ui.card().classes('flex-1 w-full shadow-md p-4'):

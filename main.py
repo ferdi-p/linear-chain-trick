@@ -1,26 +1,31 @@
-from nicegui import ui
+from nicegui import ui,app
 from model import linear_chain
 from content import background_markdown
 from ui_helpers import section_header, divider, param_row, build_info_dialog, header_with_info, make_echart_card
+from pathlib import Path
+
+
+# Serve the local "static" folder at the URL path "/static"
+app.add_static_files('/static', str(Path(__file__).parent / 'static'))
 
 ui.page_title('Linear-chain (gamma) delay — ECharts')
 
 info_dialog, open_info = build_info_dialog(background_markdown())
-header_with_info('Linear-chain (gamma) delay demo', open_info)
+header_with_info('Linear Chain Trick', open_info)
 
 with ui.element('div').classes('flex flex-col md:flex-row gap-6 p-6 w-full max-w-[1800px] mx-auto'):
     with ui.card().classes('w-full md:w-[420px] shrink-0 shadow-md p-6'):
         section_header('Parameters').classes('mb-4')
 
-        mu, _ = param_row('Mean delay μ', min=1.0, max=15.0, value=5.0, step=0.1, fmt=lambda v: f'{v:.2f}')
+        mu, _ = param_row('Mean delay μ', min=1.0, max=8.0, value=3.0, step=0.1, fmt=lambda v: f'{v:.2f}')
         divider()
-        k, _ = param_row('Number of sub-stages k', min=1, max=20, value=10, step=1, fmt=lambda v: f'{int(v)}')
+        k, _ = param_row('Number of sub-stages k', min=1, max=100, value=10, step=1, fmt=lambda v: f'{int(v)}')
         divider()
         section_header('Properties of the delay').classes('mb-2')
         mean_label = ui.label().classes('mt-1')
         var_label  = ui.label().classes('text-gray-600')
 
-    chart = make_echart_card('Distribution of delay r · Jₖ(t)', height='70vh')
+    chart = make_echart_card('Distribution of delay', height='70vh')
 
 def update_chart(_=None):
     mu_val = float(mu.value)
