@@ -51,5 +51,5 @@ def make_echart_card(title: str, height: str = '70vh'):
             'series': [
                 {'type': 'line', 'showSymbol': False, 'areaStyle': {}, 'data': []},
             ],
-        }).style('height:50vh;width:100%')
+        }).style('h-[35vh] md:h-[50vh] w-full')
         return chart
