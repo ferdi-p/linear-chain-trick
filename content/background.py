@@ -2,39 +2,68 @@ from __future__ import annotations
 
 def background_markdown() -> str:
     return r'''
-**Linear-chain trick (summary)**
+**Linear Chain Trick**
 
-<p align="center">
-  <img src="static/diagram-2.svg" width="80%" />
+The Linear Chain Trick is used to implement time delays in models.
+
+It divides a stage $J$ into $n$ sub-stages $J_i$.
+
+<p  style="padding:25px;  align="center">
+  <img src="static/diagram.svg" width="95%" />
 </p>
 
+Where the transition rate is $r=\frac{n}{\mu}$. With a single stage, the delay is exponentially distributed. With more sub-stages, the distribution becomes more narrow (it follows a Gamma Distribution).
 
-We represent a delay as a sequence of $k$ identical first-order stages.  
-Choosing
-$$ r = \frac{k}{\mu}$$
+The mean delay is independent of the number of sub-stages.
 
+$$ mean = \mu$$
 
+The variance of the delay decreases with the number of sub-stages.
 
-sets the mean delay to $\mu$.
+$$ var = \frac{\mu^2}{n}$$
 
-**ODEs (content in each sub-stage):**
-$$
-\dot J_1 = r(0 - J_1), \qquad
-\dot J_i = r(J_{i-1} - J_i), \quad i=2,\ldots,k,
-$$
-with initial condition $J_1(0)=1$ and $J_i(0)=0$ for $i>1$.
+**ODEs**
 
-**Delay density (outflow of last stage):**
+The differential equations are
+
+$$ \frac{d J_1}{dt}  =  \text{recruitment} - r J_1$$
+
+And for $i=2,\ldots,n$
+
+$$ \frac{d J_i}{dt}  =  r (J_{i-1} - J_i) $$
+
+The maturation rate is given by individuals leaving the last stage
+
+$$ maturation = r J_n$$
+
+**Showing the distribution**
+
+For the demonstration, we show the probability density function of the delay distribution. Technically, we follow single cohort and show their $maturation$ rate.
+
+The cohort starts with
+
+$$ J_1(0) = 1$$
+
+While for $i=2,\ldots,n$
+
+$$ J_i(0) = 0 $$
+
+And there is no recruitment
+
 $$
-p(t) = r\,J_k(t)
-$$
-which matches the Erlang/gamma pdf (shape $k$, scale $\theta=\mu/k$):
-$$
-p(t) = \frac{t^{k-1} e^{-t/\theta}}{\Gamma(k)\,\theta^k},\qquad \theta=\frac{\mu}{k}.
+recruitment = 0
 $$
 
-**Properties:** $\mathbb{E}[T]=\mu$, $\mathrm{Var}[T]=\mu/k$, and for $k>1$ the mode is
-$$
-t_{\text{mode}}=\frac{k-1}{k}\,\mu.
-$$
+**References**
+
+Smith, H. (2010). *Distributed delay equations and the linear chain trick.*  
+_In An Introduction to Delay Differential Equations with Applications to the Life Sciences_ (pp. 119–130). Springer New York.  
+[https://link.springer.com/chapter/10.1007/978-1-4419-7646-8_7](https://link.springer.com/chapter/10.1007/978-1-4419-7646-8_7)
+
+**Contact**
+
+Code by Ferdinand Pfab
+
+[ferdinand.pfab@gmail.com](mailto:ferdinand.pfab@gmail.com)
+
 '''
