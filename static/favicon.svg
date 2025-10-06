@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="50.589001mm"
-   height="35.417mm"
-   viewBox="0 0 50.589001 35.417"
+   width="54.589001mm"
+   height="36.417mm"
+   viewBox="0 0 54.589001 36.417"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
@@ -18,7 +18,7 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
      id="namedview1"
-     pagecolor="#ffffff"
+     pagecolor="#000000"
      bordercolor="#000000"
      borderopacity="0.25"
      inkscape:showpageshadow="2"
@@ -26,15 +26,16 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.78216891"
-     inkscape:cx="322.18105"
-     inkscape:cy="248.66752"
+     inkscape:zoom="1.5643378"
+     inkscape:cx="120.17865"
+     inkscape:cy="114.74504"
      inkscape:window-width="1920"
      inkscape:window-height="1080"
      inkscape:window-x="1470"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer1"
+     inkscape:export-bgcolor="#00000000" />
   <defs
      id="defs1">
     <inkscape:path-effect
@@ -56,12 +57,12 @@
      id="layer1"
      transform="translate(-19.462305,-82.45391)">
     <path
-       style="fill:none;fill-opacity:1;stroke:#0e1df2;stroke-width:5.2;stroke-dasharray:none;stroke-opacity:0.945098"
+       style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:5.2;stroke-dasharray:none;stroke-opacity:0.94509798"
        d="m 19.61959,110.27563 c 3.720957,-0.22551 7.441837,-0.45102 10.204422,-5.97619 2.762584,-5.525171 4.566613,-16.349339 7.103679,-18.773648 2.537067,-2.424308 5.806868,3.551535 7.94928,8.907565 2.142412,5.35603 3.157177,10.091603 6.145278,12.572293 2.988101,2.48069 7.949275,2.7062 12.910552,2.93171"
        id="path1"
        inkscape:path-effect="#path-effect1"
        inkscape:original-d="m 19.61959,110.27563 c 3.720957,-0.22551 7.441837,-0.45102 11.162869,-0.67654 1.804137,-10.824821 3.608166,-21.648989 5.412302,-32.473806 3.269997,5.9762 6.539798,11.952043 9.809796,17.928244 1.014826,4.735859 2.02959,9.471432 3.044417,14.207292 4.961376,0.22552 9.92255,0.45102 14.883827,0.67654"
        sodipodi:nodetypes="cccccc"
-       transform="translate(4.0592255,2.7061503)" />
+       transform="translate(6.0888383,2.8752847)" />
   </g>
 </svg>

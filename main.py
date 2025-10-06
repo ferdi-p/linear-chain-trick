@@ -49,6 +49,6 @@ for w in (mu, n):
 
 update_chart()
 ui.add_head_html('''
-<link rel="icon" type="image/x-icon" href="/static/favicon.ico?v=8">
+<link rel="icon" type="image/x-icon" href="/static/favicon.ico?v=9">
 ''')
 ui.run(host='0.0.0.0', port=8080)
