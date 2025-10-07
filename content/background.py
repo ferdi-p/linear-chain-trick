@@ -4,67 +4,76 @@ def background_markdown() -> str:
     return r'''
 **Linear Chain Trick**
 
-The Linear Chain Trick is used to implement time delays in models.
+The *Linear Chain Trick* is a method for representing time delays in ordinary differential equation (ODE) models. It is commonly used in population dynamics to describe the time an individual spends in a particular stage, such as the juvenile phase.
 
-It divides a stage $J$ into $n$ sub-stages $J_i$.
+The idea is to replace a single delayed stage $J$ by a sequence of $n$ sub-stages $J_i$ that are connected in series:
 
-<p  style="padding:25px;  align="center">
-  <img src="static/diagram.svg" width="95%" />
+<p style="padding:25px; text-align:center">
+  <img src="static/diagram.svg?v=2" width="95%" />
 </p>
 
-Where the transition rate is $r=\frac{n}{\mu}$. With a single stage, the delay is exponentially distributed. With more sub-stages, the distribution becomes more narrow (it follows a Gamma Distribution).
+Each individual progresses through these sub-stages with a constant transition rate
 
-The mean delay is independent of the number of sub-stages.
+$$ r = \frac{n}{\mu} $$
 
-$$ mean = \mu$$
+where $\mu$ is the mean delay.  
 
-The variance of the delay decreases with the number of sub-stages.
+With a single stage ($n=1$), the delay follows an exponential distribution.  As the number of sub-stages increases, the distribution becomes narrower and approaches a Gamma distribution.
 
-$$ var = \frac{\mu^2}{n}$$
+The **mean delay** is independent of the number of sub-stages
 
-**ODEs**
+$$ \text{mean} = \mu $$
 
-The differential equations are
+while the **variance** decreases with increasing $n$
 
-$$ \frac{d J_1}{dt}  =  \text{recruitment} - r J_1$$
+$$ \text{var} = \frac{\mu^2}{n}. $$
 
-And for $i=2,\ldots,n$
+---
 
-$$ \frac{d J_i}{dt}  =  r (J_{i-1} - J_i) $$
+**Differential equations**
 
-The maturation rate is given by individuals leaving the last stage
+The governing equations for the sub-stages are
 
-$$ maturation = r J_n$$
+$$ \frac{dJ_1}{dt} = \text{recruitment} - r J_1 $$
 
-**Showing the distribution**
+and for $i = 2, \ldots, n$
 
-For the demonstration, we show the probability density function of the delay distribution. Technically, we follow single cohort and show their $maturation$ rate.
+$$ \frac{dJ_i}{dt} = r (J_{i-1} - J_i). $$
 
-The cohort starts with
+The maturation rate from the stage is given by individuals leaving the last sub-stage
 
-$$ J_1(0) = 1$$
+$$ \text{maturation} = r J_n. $$
 
-While for $i=2,\ldots,n$
+---
 
-$$ J_i(0) = 0 $$
+**Distribution**
 
-And there is no recruitment
+In this demonstration, we illustrate the *probability density function* (PDF) of the delay distribution. Technically, we follow a single cohort and show the maturation rate over time.
 
-$$
-recruitment = 0
-$$
+The cohort starts entirely in the first sub-stage
 
-**References**
+$$ J_1(0) = 1 $$
 
-Smith, H. (2010). *Distributed delay equations and the linear chain trick.*  
-_In An Introduction to Delay Differential Equations with Applications to the Life Sciences_ (pp. 119–130). Springer New York.  
-[https://link.springer.com/chapter/10.1007/978-1-4419-7646-8_7](https://link.springer.com/chapter/10.1007/978-1-4419-7646-8_7)
+while all other sub-stages are initially empty
+
+$$ J_i(0) = 0, \quad i = 2, \ldots, n $$
+
+and there is no ongoing recruitment
+
+$$ \text{recruitment} = 0. $$
+
+---
+
+**Reference**
+
+[Smith, H. (2010). *Distributed delay equations and the linear chain trick.*](https://link.springer.com/chapter/10.1007/978-1-4419-7646-8_7)
+
+---
 
 **Contact**
 
-Code by Ferdinand Pfab
-
-[ferdinand.pfab@gmail.com](mailto:ferdinand.pfab@gmail.com)
-
+Code by Ferdinand Pfab  
+[ferdinand.pfab@gmail.com](mailto:ferdinand.pfab@gmail.com)  
 2025
 '''
+
