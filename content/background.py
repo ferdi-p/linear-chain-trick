@@ -72,7 +72,7 @@ $$ \text{recruitment} = 0. $$
 
 **Contact**
 
-Code by Ferdinand Pfab  
+Ferdinand Pfab  
 [ferdinand.pfab@gmail.com](mailto:ferdinand.pfab@gmail.com)  
 2025
 '''
