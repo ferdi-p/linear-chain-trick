@@ -1,1 +1,3 @@
-# Linear-chain (gamma) delay — NiceGUI app
+# Linear chain trick
+
+Code for NiceGUI App.
